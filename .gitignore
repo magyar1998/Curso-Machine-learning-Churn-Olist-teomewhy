@@ -1,5 +1,5 @@
 # Arquivos de dados
-*.txt
+# *.txt
 *.csv
 *.db
 *.xls
