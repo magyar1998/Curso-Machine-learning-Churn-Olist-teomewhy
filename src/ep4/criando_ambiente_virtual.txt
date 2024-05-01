@@ -1,0 +1,12 @@
+rodar no cmd
+
+remover - conda remove -n nome_env --all
+criar - conda create -n nome_envv python3.
+
+ativar env - conda activate olist-env
+desativar env - conda deactivate
+
+poblema com Verificação de Certificado SSL
+
+desativar - conda config --set ssl_verify False
+ativar - conda config --set ssl_verify True
