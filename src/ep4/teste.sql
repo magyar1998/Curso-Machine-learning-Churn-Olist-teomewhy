@@ -1,25 +1,25 @@
-
+insert into tb_book_sellers
 with tb_primeira_venda as (
         select t2.seller_id,
-                julianday('{date}') - julianday(date(min(t1.order_approved_at))) as idade_base
+                julianday('2017-05-01') - julianday(date(min(t1.order_approved_at))) as idade_base
         from tb_orders as t1
                 left join tb_order_items as t2 on t1.order_id = t2.order_id
         where t1.order_status = "delivered"
-                and t1.order_approved_at >= date("{date}", "-6 months")
-                and t1.order_approved_at < "{date}"
+                and t1.order_approved_at >= date("2017-05-01", "-6 months")
+                and t1.order_approved_at < "2017-05-01"
         group by t2.seller_id
 ),
 tb_ultima_venda as (
         select t2.seller_id,
-                julianday('{date}') - julianday(date(max(t1.order_approved_at))) as tempo_ultima_venda
+                julianday('2017-05-01') - julianday(date(max(t1.order_approved_at))) as tempo_ultima_venda
         from tb_orders as t1
                 left join tb_order_items as t2 on t1.order_id = t2.order_id
         where t1.order_status = "delivered"
-                and t1.order_approved_at >= date("{date}", "-6 months")
-                and t1.order_approved_at < "{date}"
+                and t1.order_approved_at >= date("2017-05-01", "-6 months")
+                and t1.order_approved_at < "2017-05-01"
         group by t2.seller_id
 )
-select '{date}' as dt_ref ,
+select '2017-05-01' as dt_ref ,
         t2.seller_id,
         t5.seller_state,
         t5.seller_city,
@@ -366,6 +366,6 @@ from tb_orders as t1
         left join tb_products as t6 on t2.product_id = t6.product_id
         left join tb_order_reviews as t7 on t1.order_id = t7.order_id
 where t1.order_status = "delivered"
-        and t1.order_approved_at >= date("{date}", "-6 months")
-        and t1.order_approved_at < "{date}"
+        and t1.order_approved_at >= date("2017-05-01", "-6 months")
+        and t1.order_approved_at < "2017-05-01"
 group by t2.seller_id;
